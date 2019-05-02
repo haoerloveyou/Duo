@@ -7,6 +7,7 @@ DuoPrefs_FILES = MRYRootListController.m
 DuoPrefs_INSTALL_PATH = /Library/PreferenceBundles
 DuoPrefs_FRAMEWORKS = UIKit
 DuoPrefs_PRIVATE_FRAMEWORKS = Preferences
+DuoPrefs_LDFLAGS += -FFrameworks/
 DuoPrefs_CFLAGS = -fobjc-arc
 
 include $(THEOS_MAKE_PATH)/bundle.mk
