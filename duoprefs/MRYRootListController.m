@@ -1,5 +1,6 @@
 #include "MRYHomepageListController.h"
 #include "MRYReorderListController.h"
+#import <spawn.h>
 
 #define PLIST_PATH @"/var/mobile/Library/Preferences/com.muirey03.duo.plist"
 #define prefsDict [NSDictionary dictionaryWithContentsOfFile:PLIST_PATH]
@@ -69,7 +70,11 @@
 
 -(void)respring
 {
-	system("killall -9 SpringBoard");
+	pid_t pid;
+    int status;
+    const char* args[] = {"killall", "-9", "backboardd", NULL};
+    posix_spawn(&pid, "/usr/bin/killall", NULL, NULL, (char* const*)args, NULL);
+    waitpid(pid, &status, WEXITED);
 }
 @end
 
@@ -453,7 +458,7 @@
 		NSString* infoText = [prefsBundle localizedStringForKey:@"INFO" value:@"Add and organise modules to appear in the second page of the Control Center." table:nil];
 		[lbl setText:infoText];
 		lbl.textAlignment = NSTextAlignmentCenter;
-		lbl.lineBreakMode = UILineBreakModeWordWrap;
+		lbl.lineBreakMode = NSLineBreakByWordWrapping;
 		lbl.numberOfLines = 0;
 		[[self contentView] addSubview:lbl];
 	}
