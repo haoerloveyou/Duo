@@ -1,0 +1,9 @@
+#!/bin/bash
+path="$(ls -t packages/* | head -1)"
+cp $path ./tmp.deb
+/opt/patcher-win.exe ./tmp.deb
+rm ./tmp.deb
+scp -P 22 ./tmp.patched.zip root@192.168.1.235:/var/debs/tmp.zip
+rm ./tmp.patched.zip
+ssh root@192.168.1.235 'rm -rf /var/debs/tmp && mkdir /var/debs/tmp && unzip /var/debs/tmp.zip -d /var/debs/tmp && rm /var/debs/tmp.zip && /var/containers/Bundle/iosbinpack64/usr/bin/sed -i '\'''\'' '\''s/chown/\/var\/containers\/Bundle\/iosbinpack64\/usr\/sbin\/chown/g'\'' /var/debs/tmp/install && /var/containers/Bundle/iosbinpack64/usr/bin/sed -i '\'''\'' '\''s/inject/\/var\/containers\/Bundle\/iosbinpack64\/usr\/bin\/inject/g'\'' /var/debs/tmp/install && cd /var/debs/tmp && ./install && /var/containers/Bundle/iosbinpack64/usr/bin/killall SpringBoard'
+exit 0
