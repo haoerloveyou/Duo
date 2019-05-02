@@ -282,7 +282,7 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 
 %hook CCUIContentModuleContainerView
 
-%property (retain, nonatomic) CGRect desiredFrame;
+%property (assign, nonatomic) CGRect desiredFrame;
 %property (retain, nonatomic) NSString* moduleName;
 
 //ensure all the modules have their frames set correctly
