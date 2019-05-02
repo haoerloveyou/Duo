@@ -1,7 +1,7 @@
 Package: com.muirey03.duo
 Name: Duo
 Depends: mobilesubstrate, preferenceloader
-Version: 1.0.5
+Version: 1.0.6
 Architecture: iphoneos-arm
 Description: Add a second page to the iOS 11 Control Center!
 Maintainer: Muirey03
