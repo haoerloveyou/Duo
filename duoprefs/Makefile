@@ -1,12 +1,11 @@
-ARCHS = armv7 arm64 arm64e
+ARCHS = arm64 arm64e
 
 include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = DuoPrefs
 DuoPrefs_FILES = MRYRootListController.m
 DuoPrefs_INSTALL_PATH = /Library/PreferenceBundles
-DuoPrefs_FRAMEWORKS = UIKit
-DuoPrefs_PRIVATE_FRAMEWORKS = Preferences
+DuoPrefs_FRAMEWORKS = UIKit Preferences
 DuoPrefs_LDFLAGS += -FFrameworks/
 DuoPrefs_CFLAGS = -fobjc-arc
 
